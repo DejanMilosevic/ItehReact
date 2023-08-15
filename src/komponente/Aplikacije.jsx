@@ -1,4 +1,5 @@
 import React from "react";
+import RedTabele from "./RedTabele";
 
 function Aplikacije({ applications, reviews }) {
   return (
@@ -13,25 +14,9 @@ function Aplikacije({ applications, reviews }) {
           </tr>
         </thead>
         <tbody>
-          {applications.map((app) => (
-            <tr key={app.id}>
-              <td>{app.id}</td>
-              <td>{app.name}</td>
-              <td>
-                <button
-                  onClick={() => {
-                    const appReviews = reviews.filter(
-                      (review) => review.applicationId === app.id
-                    );
-                    console.log(appReviews);
-                  }}
-                >
-                  Detalji
-                </button>
-              </td>
-            </tr>
+          {applications.map((app, index) => (
+            <RedTabele key={index} app={app} reviews={reviews} />
           ))}
-          ;
         </tbody>
       </table>
     </div>
