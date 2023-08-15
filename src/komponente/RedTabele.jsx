@@ -5,7 +5,7 @@ function RedTabele({ app, reviews }) {
   const navigate = useNavigate();
 
   const handleDetailsClick = () => {
-    navigate(`/product/${app.id}`);
+    navigate(`/application/${app.id}`);
   };
   return (
     <tr key={app.id}>

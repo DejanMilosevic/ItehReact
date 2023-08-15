@@ -64,7 +64,7 @@ function App() {
           element={<Aplikacije applications={applications} reviews={reviews} />}
         ></Route>
         <Route
-          path="/product/:id"
+          path="/application/:id"
           element={
             <DetaljiAplikacije
               applications={applications}
