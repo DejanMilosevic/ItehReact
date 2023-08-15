@@ -1,6 +1,9 @@
 import "./App.css";
 import { useState } from "react";
 import Aplikacije from "./komponente/Aplikacije";
+import { BrowserRouter as BRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./komponente/NavBar";
+import DetaljiAplikacije from "./komponente/DetaljiAplikacije";
 
 function App() {
   const [applications] = useState([
@@ -24,33 +27,54 @@ function App() {
     },
   ]);
 
-  const [reviews] = useState([
+  const [reviews, setReviews] = useState([
     {
+      id: 1,
       applicationId: 2,
       rating: 5,
-      comment: "Odlicna aplikacija za gledanje slika",
     },
     {
+      id: 2,
       applicationId: 2,
       rating: 3,
-      comment: "Solidna aplikacija, bolji je Facebook",
     },
     {
+      id: 3,
       applicationId: 1,
       rating: 4,
-      comment: "Vrlo dobra aplikacija, bolja je od Viber-a",
     },
     {
+      id: 4,
       applicationId: 3,
       rating: 4,
-      comment: "Super aplikacija, jedina mana su reklame",
     },
   ]);
 
+  const handleAddReview = (review) => {
+    review.id = reviews.length + 1;
+    setReviews((prevReviews) => [...prevReviews, review]);
+  };
+
   return (
-    <div className="App">
-      <Aplikacije applications={applications} reviews={reviews} />
-    </div>
+    <BRouter>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={<Aplikacije applications={applications} reviews={reviews} />}
+        ></Route>
+        <Route
+          path="/product/:id"
+          element={
+            <DetaljiAplikacije
+              applications={applications}
+              reviews={reviews}
+              onAdd={handleAddReview}
+            />
+          }
+        ></Route>
+      </Routes>
+    </BRouter>
   );
 }
 
